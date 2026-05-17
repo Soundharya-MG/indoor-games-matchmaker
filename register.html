@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join PartnerFinder | Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-indigo-700 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight">PartnerFinder.io</h1>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:underline">Find Partners</a>
+                <a href="register.html" class="font-bold underline">Join Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">Create Profile</h2>
+                <p class="text-gray-500 mt-2">Join your local community and start playing.</p>
+            </div>
+
+            <form id="regForm" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" required placeholder="Enter your name"
+                        class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Preferred Game</label>
+                    <select id="game" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                        <option value="Chess">Chess</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Carrom">Carrom</option>
+                        <option value="Table Tennis">Table Tennis</option>
+                        <option value="Cards">Cards</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Playing Location</label>
+                    <input type="text" id="location" required placeholder="e.g. Society Clubhouse, Anna Nagar"
+                        class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Skill Level</label>
+                        <select id="skill" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Availability</label>
+                        <select id="availability" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                            <option value="Morning">Morning</option>
+                            <option value="Evening">Evening</option>
+                            <option value="Weekends">Weekends</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg transform transition active:scale-95 mt-4">
+                    Complete Registration
+                </button>
+            </form>
+
+            <p class="text-center text-sm text-gray-500 mt-6">
+                Already have a profile? <a href="index.html" class="text-indigo-600 font-bold hover:underline">Go to Search</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Form Submission Logic
+        document.getElementById('regForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Collect Data
+            const userData = {
+                name: document.getElementById('name').value,
+                game: document.getElementById('game').value,
+                location: document.getElementById('location').value,
+                skill: document.getElementById('skill').value,
+                availability: document.getElementById('availability').value
+            };
+
+            try {
+                const response = await fetch('/api/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    alert("Registration Successful! Redirecting to search...");
+                    window.location.href = 'index.html';
+                } else {
+                    alert("Registration failed. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Server connection error.");
+            }
+        });
+    </script>
+</body>
+</html>

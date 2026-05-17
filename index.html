@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Partner Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-sans">
+    <nav class="bg-indigo-700 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight">PartnerFinder.io</h1>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:underline">Find Partners</a>
+                <a href="register.html" class="bg-white text-indigo-700 px-4 py-2 rounded-lg font-bold">Join Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-indigo-600 text-white py-12 px-4">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-extrabold mb-4">Find Your Next Game Partner</h2>
+            <p class="mb-8 text-indigo-100 text-lg">Connect with local players for Chess, Badminton, Carrom, and more.</p>
+            
+            <div class="max-w-4xl mx-auto bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row gap-2">
+                <input id="gameInput" type="text" placeholder="Which game?" class="flex-1 p-4 text-gray-800 outline-none rounded-lg">
+                <input id="locInput" type="text" placeholder="Location (e.g. Clubhouse)" class="flex-1 p-4 text-gray-800 outline-none rounded-lg border-l">
+                <button onclick="searchPlayers()" class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-lg font-bold transition">Find Partners</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-12 px-4">
+        <div id="playerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
